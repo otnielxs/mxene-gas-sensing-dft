@@ -82,7 +82,7 @@ mxene-gas-sensing-dft/
 ## Reproducing the Results
 
 ```bash
-# QE calculations (run on HPC cluster)
+# QE calculations
 cd qe/inputs/
 pw.x < scf_ti2co2_nh3.in > scf_ti2co2_nh3.out
 
