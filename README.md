@@ -44,9 +44,9 @@ Comparison of charge transfer and bonding character between the two approaches t
 | Molecule | Rationale |
 |---|---|
 | NH₃    | *(to be filled in once results are available)* |
+| NO₂    | *(to be filled in once results are available)* |
 | CO₂    | *(to be filled in once results are available)* |
 | H₂S    | *(to be filled in once results are available)* |
-
 ## Key Results
 
 *(This section will be filled in once calculations are complete — placeholder for key figures)*
