@@ -35,6 +35,9 @@ For adsorption calculations using a larger supercell (to avoid spurious interact
 - Smearing scheme: Marzari-Vanderbilt (cold smearing), degauss = *(0.02 Ry)* — appropriate given the semi-metallic character of Ti₂CO₂
 - Mixing beta: *(default)*
 
+### 1.4 van Der Waals Correction
+
+- For capturing vdW interactions, *DFT-D3* implemented in *vdw_corr*
 ---
 
 ## 2. Slab Construction
@@ -52,9 +55,9 @@ For adsorption calculations using a larger supercell (to avoid spurious interact
 Because periodic DFT captures surface-averaged electronic effects but is less suited to resolving local bonding topology in detail, a complementary cluster model was built for each adsorption case.
 
 - **Cluster extraction:** the cluster was cut from the relaxed periodic adsorption geometry, centered on the adsorption site, including the immediate coordination environment of the gas molecule
-- **Cluster size:** *(TBD — number of Ti/C/O atoms included, radius or coordination shells retained)*
+- **Cluster size:** *(1 unit cell)*
 - **Dangling bond treatment:** boundary atoms with broken bonds were capped with hydrogen atoms to saturate valence and avoid spurious edge states
-- **Geometry:** the cluster geometry was kept fixed from the periodic-relaxed structure for single-point analysis, or re-optimized *(TBD — state which was done and why)*
+- **Geometry:** the cluster geometry was kept fixed from the periodic-relaxed structure for single-point analysis, or re-optimized
 
 ---
 
@@ -69,10 +72,10 @@ Because periodic DFT captures surface-averaged electronic effects but is less su
 
 ## 5. Post-Processing Methods
 
-### 5.1 Quantum ESPRESSO (`pp.x`)
+### 5.1 Quantum ESPRESSO (`pp.x and projwfc.x`)
 - **Charge density difference (Δρ):** Δρ = ρ(slab+molecule) − ρ(slab) − ρ(molecule), computed on the relaxed adsorption geometry, holding atomic positions fixed across the three calculations
 - **Planar-averaged electrostatic potential:** used to estimate the work function shift upon adsorption, a key indicator for sensing sensitivity
-- **Projected density of states (PDOS):** used to identify which orbitals (Ti-d, O-p, molecule frontier orbitals) contribute to the interaction near the Fermi level
+- **Projected density of states (PDOS):** used to identify which orbitals (Ti-d, O-p, N-s, H-s, C-p, S-p) contribute to the interaction near the Fermi level
 
 ### 5.2 Multiwfn
 - **NCI (Non-Covalent Interaction) plot:** used to visualize and classify the interaction type (van der Waals, weak hydrogen bonding, steric repulsion) at the adsorption site
@@ -93,4 +96,5 @@ Because periodic DFT captures surface-averaged electronic effects but is less su
 
 | Date | Change |
 |---|---|
-| *(TBD)* | Initial draft — parameters pending convergence testing |
+| *18/09/2026* | Initial draft — parameters pending convergence testing |
+| *19/09/2026* | QE running |
