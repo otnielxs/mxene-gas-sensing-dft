@@ -1,0 +1,10 @@
+&INPUTPP
+ outdir='../tmp',
+ prefix='vdw',
+ plot_num=0,
+/
+&PLOT
+ iflag=3,
+ output_format=6,
+ fileout='NH3.cube',
+/

@@ -1,0 +1,6 @@
+&INPUTPP
+  prefix='vdw',
+  outdir='../tmp',
+  plot_num=11
+  filplot='pot_NO2.pot'
+/

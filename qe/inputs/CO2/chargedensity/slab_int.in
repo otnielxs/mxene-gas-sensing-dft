@@ -1,0 +1,10 @@
+&INPUTPP
+ outdir='../tmp',
+ prefix='slab_int',
+ plot_num=0,
+/
+&PLOT
+ iflag=3,
+ output_format=6,
+ fileout='slab_int.cube',
+/

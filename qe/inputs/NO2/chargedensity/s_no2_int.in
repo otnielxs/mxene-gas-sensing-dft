@@ -1,0 +1,39 @@
+&CONTROL
+  calculation = 'scf'
+  prefix = 'no2_int'
+  outdir = './tmp'
+  pseudo_dir = '../pseudopotensial'
+/
+
+&SYSTEM
+  ibrav = 0
+  nat = 3
+  ntyp = 2
+  ecutwfc = 40
+  ecutrho = 320
+  occupations = 'smearing'
+  smearing = 'mv'
+  degauss = 0.02
+  vdw_corr = 'DFT-D3'
+/
+
+&ELECTRONS
+  conv_thr = 1.0d-8
+/
+
+&IONS
+/
+
+CELL_PARAMETERS angstrom
+  6.06427   0.00000   0.00000
+ -1.51607   2.62591   0.00000
+  0.00000   0.00000  19.42568
+
+ATOMIC_SPECIES
+ O  15.999 O.pbe-n-kjpaw_psl.1.0.0.UPF
+ N  14.007 N.pbe-n-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS angstrom
+! coordinate after r_NO2.in optimized
+K_POINTS automatic
+ 3 6 1 0 0 0

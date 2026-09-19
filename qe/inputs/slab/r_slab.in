@@ -1,0 +1,48 @@
+&CONTROL
+  calculation = 'relax'
+  prefix = 'slab'
+  outdir = './tmp'
+  pseudo_dir = '../pseudopotensial'
+/
+
+&SYSTEM
+  ibrav = 0
+  nat = 10
+  ntyp = 3
+  ecutwfc = 40
+  ecutrho = 320
+  occupations = 'smearing'
+  smearing = 'mv'
+  degauss = 0.02
+/
+
+&ELECTRONS
+  conv_thr = 1.0d-8
+/
+
+&IONS
+/
+
+CELL_PARAMETERS angstrom
+  6.06427   0.00000   0.00000
+ -1.51607   2.62591   0.00000
+  0.00000   0.00000  19.42568
+
+ATOMIC_SPECIES
+ Ti 47.867 Ti.pbe-spn-kjpaw_psl.1.0.0.UPF
+ C  12.011 C.pbe-n-kjpaw_psl.1.0.0.UPF
+ O  15.999 O.pbe-n-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS angstrom
+Ti               0.0012395334        1.7514521035        8.3797729535
+Ti               1.4594481501        0.8427229773       10.7962147190
+C                3.0212101433       -0.0069624966        9.6838464676
+O               -0.1077577271        1.6854353893       11.7799785960
+O                1.5263196915        0.8810543896        7.4757265896
+Ti               3.0264907252        1.7475339016        8.3790023408
+Ti               4.6352247749        0.9265028205       10.7890542595
+C                6.0800623475        0.0095990482        9.6445993132
+O                3.0833584437        1.7850243969       11.6848202519
+O                4.5432842390        0.8722883350        7.4840213436
+K_POINTS automatic
+ 2 4 1 0 0 0

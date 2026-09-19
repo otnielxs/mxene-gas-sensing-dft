@@ -1,0 +1,10 @@
+&PROJWFC
+  prefix='co2',
+  outdir='../tmp/',
+  filpdos='co2.pdos',
+  Emin=-20.0,
+  Emax=20.0,
+  DeltaE=0.05,
+  ngauss=0,
+  degauss=0.01,
+/

@@ -1,0 +1,56 @@
+&CONTROL
+  calculation = 'relax'
+  prefix = 'vdw'
+  outdir = './tmp'
+  pseudo_dir = '../pseudopotensial'
+  nstep = 250
+/
+
+&SYSTEM
+  ibrav = 0
+  nat = 14
+  ntyp = 5
+  ecutwfc = 40
+  ecutrho = 320
+  occupations = 'smearing'
+  smearing = 'mv'
+  degauss = 0.02
+  vdw_corr = 'DFT-D3'
+/
+
+&ELECTRONS
+  conv_thr = 1.0d-8
+/
+
+&IONS
+/
+
+CELL_PARAMETERS angstrom
+  6.06427   0.00000   0.00000
+ -1.51607   2.62591   0.00000
+  0.00000   0.00000  19.42568
+
+ATOMIC_SPECIES
+ Ti 47.867 Ti.pbe-spn-kjpaw_psl.1.0.0.UPF
+ C  12.011 C.pbe-n-kjpaw_psl.1.0.0.UPF
+ O  15.999 O.pbe-n-kjpaw_psl.1.0.0.UPF
+ N  14.007 N.pbe-n-kjpaw_psl.1.0.0.UPF
+ H   1.008 H.pbe-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS angstrom
+Ti               0.0621089933        1.7900655031        8.1278262229
+Ti               1.5641281734        0.9040107833       10.7266609812
+C                3.1830370992        0.0903505832        9.4354213521
+O                0.1450547603        1.8359126755       11.6501101203
+O                1.6411712747        0.9509336237        7.2242915076
+Ti               3.0937045608        1.7897204916        8.1320474137
+Ti               4.6003480068        0.9090172517       10.7268961824
+C                6.2126013270        0.0883922406        9.4340230647
+O                3.1784019657        1.8386417381       11.6543895601
+O                4.6760284385        0.9524585969        7.2250240194
+N                2.1590800769        1.4811215522       14.7054175852
+H                1.2375267599        1.0430758699       14.6248618298
+H                2.4693060657        1.6854769444       13.7505841454
+H                2.8002724977        0.7640821458       15.0792760149
+K_POINTS automatic
+ 2 4 1 0 0 0

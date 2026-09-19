@@ -1,0 +1,41 @@
+&CONTROL
+  calculation = 'relax'
+  prefix = 'co2'
+  outdir = './tmp'
+  pseudo_dir = '../pseudopotensial'
+/
+
+&SYSTEM
+  ibrav = 0
+  nat = 3
+  ntyp = 2
+  ecutwfc = 40
+  ecutrho = 320
+  occupations = 'smearing'
+  smearing = 'mv'
+  degauss = 0.02
+/
+
+&ELECTRONS
+  conv_thr = 1.0d-8
+/
+
+&IONS
+/
+
+CELL_PARAMETERS angstrom
+  6.06427   0.00000   0.00000
+ -1.51607   2.62591   0.00000
+  0.00000   0.00000  19.42568
+
+ATOMIC_SPECIES
+ C  12.011 C.pbe-n-kjpaw_psl.1.0.0.UPF
+ O  15.999 O.pbe-n-kjpaw_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS angstrom
+C                2.5691860703        1.4833304077       15.5325443836
+O                1.7852716708        1.0303701620       14.7830701135
+O                3.3517715061        1.9355223399       16.2833368231
+
+K_POINTS automatic
+ 2 4 1 0 0 0

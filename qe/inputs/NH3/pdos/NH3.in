@@ -1,0 +1,10 @@
+&PROJWFC
+  prefix='vdw',
+  outdir='../tmp/',
+  filpdos='NH3.pdos',
+  Emin=-20.0,
+  Emax=20.0,
+  DeltaE=0.05,
+  ngauss=0,
+  degauss=0.01,
+/
