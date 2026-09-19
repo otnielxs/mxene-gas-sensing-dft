@@ -37,7 +37,7 @@ For adsorption calculations using a larger supercell (to avoid spurious interact
 
 ### 1.4 van Der Waals Correction
 
-- For capturing vdW interactions, *DFT-D3* implemented in *vdw_corr*
+- For capturing vdW interactions, **DFT-D3** implemented in *vdw_corr*
 ---
 
 ## 2. Slab Construction
