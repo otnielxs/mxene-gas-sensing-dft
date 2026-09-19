@@ -1,6 +1,6 @@
 # Gas Molecule Adsorption on MXene Ti₂CO₂ Monolayer: A Multi-Method DFT Bonding Analysis
 
-A computational study of gas molecule adsorption (NH₃, CO₂, H₂S) on Ti₂CO₂ MXene monolayer, using complementary **periodic DFT (Quantum ESPRESSO)** and **cluster model (ORCA + Multiwfn)** approaches to evaluate the potential of Ti₂CO₂ as a gas-sensing material.
+A computational study of gas molecule adsorption (NH₃, CO₂, NO₂, H₂S) on Ti₂CO₂ MXene monolayer, using complementary **periodic DFT (Quantum ESPRESSO)** and **cluster model (ORCA + Multiwfn)** approaches to evaluate the potential of Ti₂CO₂ as a gas-sensing material.
 
 ## Motivation
 
@@ -23,7 +23,7 @@ The periodic-DFT methodology in this project builds on prior thesis research on 
 - Ti₂CO₂ monolayer slab with a vacuum layer, optimized prior to gas molecule adsorption
 - Computational parameters (cutoff energy, k-points) determined via convergence testing on the pristine monolayer — see [`docs/methodology.md`](docs/methodology.md)
 - Adsorption energy calculation: E_ads = E_(slab+molecule) − E_slab − E_molecule
-- Post-processing with `pp.x`:
+- Post-processing with `pp.x and projwfc.x`:
   - Charge density difference (Δρ)
   - Planar-averaged electrostatic potential (work function shift)
   - Projected density of states (PDOS)
@@ -62,12 +62,12 @@ Comparison of charge transfer and bonding character between the two approaches t
 mxene-gas-sensing-dft/
 ├── README.md
 ├── qe/
-│   ├── inputs/         # scf, relax, pp.x inputs per gas molecule
+│   ├── inputs/         # relax, scf, nscf, pp.x inputs per gas molecule
 │   └── scripts/        # pp.x output parsing, Δρ & potential plotting
 ├── orca-multiwfn/
 │   ├── inputs/         # Cluster model ORCA inputs
 │   └── scripts/        # Multiwfn input automation, NCI/ELF plotting
-├── figures/             # Charge density, NCI plots, band alignment
+├── figures/             # Charge density, PDOS, workfunction, NCI plots 
 └── docs/
     └── methodology.md   # Cluster model justification & DFT parameters
 ```
@@ -84,15 +84,15 @@ mxene-gas-sensing-dft/
 ```bash
 # QE calculations
 cd qe/inputs/
-pw.x < scf_ti2co2_nh3.in > scf_ti2co2_nh3.out
+pw.x < s_nh3.in > s_nh3.out
 
 # Post-processing
-pp.x < pp_chdens.in > pp_chdens.out
-python ../scripts/plot_charge_density.py
+pp.x < a_nh3.in > a_nh3.out
+python3 plot.py
 
 # Cluster model with ORCA (run locally)
 cd orca-multiwfn/inputs/
-orca cluster_nh3.inp > cluster_nh3.out
+orca nh3.inp > nh3.out
 
 # Multiwfn analysis
 Multiwfn cluster_nh3.molden < ../scripts/nci_settings.txt
