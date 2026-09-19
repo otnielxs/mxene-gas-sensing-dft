@@ -1,0 +1,10 @@
+the plot and post processing file already in inputs directory. here's some notation:
+
+-r in prefix, e.g r_slab.in, is stand for relax (calculation = relax)
+-s in prefix, e.g s_slab.in, is stand for relax (calculation = scf)
+-n in prefix, e.g n_slab.in, is stand for relax (calculation = nscf)
+-a in prefix, e.g a_slab.in, is stand for average.x packets
+
+-the capital letter for molecule name is stand for MXene+mol, e.g r_NH3.in that mean NH3 molecule was adsorption on MXene
+-the small letter for molecule name is stand only for molecule, e.g r_nh3.in that mean only contain nh3 molecule
+
