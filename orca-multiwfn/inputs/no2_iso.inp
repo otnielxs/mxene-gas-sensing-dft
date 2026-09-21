@@ -1,0 +1,14 @@
+! PBE D3BJ def2-SVP def2/J RIJCOSX Opt TightSCF
+%geom
+  MaxIter 250
+end
+
+%pal nprocs 8 end
+
+%maxcore 2000
+
+* xyz 0 2
+ N   0.85327   1.36794  1.10539
+ O   0.44511   1.13229  1.91054
+ O   1.34307   1.65072  1.92292
+*
