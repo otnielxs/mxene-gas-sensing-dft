@@ -121,12 +121,13 @@ mxene-gas-sensing-dft/
 - [Quantum ESPRESSO](https://www.quantum-espresso.org/) — periodic DFT calculations
 - [ORCA](https://orcaforum.kofo.mpg.de/) — cluster model quantum chemistry
 - [Multiwfn](http://sobereva.com/multiwfn/) — wavefunction analysis (NCI, ELF, ADCH, Bader charge)
+- [VMD](https://www.ks.uiuc.edu/Research/vmd/)- molecular visualization program for displaying, animating, and analyzing large biomolecular systems using 3-D graphics and built-in scripting
 - Python (NumPy, Matplotlib) — parsing & visualization
 
 ## Reproducing the Results
 
 ```bash
-# QE calculations
+# QE 
 cd qe/inputs/
 pw.x < s_nh3.in > s_nh3.out
 
@@ -134,11 +135,8 @@ pw.x < s_nh3.in > s_nh3.out
 pp.x < a_nh3.in > a_nh3.out
 python3 plot.py
 
-# Cluster model with ORCA (run locally)
+# ORCA
 cd orca-multiwfn/inputs/
 orca nh3.inp > nh3.out
 
-# Multiwfn analysis (example: NCI)
-Multiwfn nh3.molden < ../scripts/nci_settings.txt
 ```
-
