@@ -121,7 +121,7 @@ mxene-gas-sensing-dft/
 - [Quantum ESPRESSO](https://www.quantum-espresso.org/) — periodic DFT calculations
 - [ORCA](https://orcaforum.kofo.mpg.de/) — cluster model quantum chemistry
 - [Multiwfn](http://sobereva.com/multiwfn/) — wavefunction analysis (NCI, ELF, ADCH, Bader charge)
-- [VMD](https://www.ks.uiuc.edu/Research/vmd/)- molecular visualization program for displaying, animating, and analyzing large biomolecular systems using 3-D graphics and built-in scripting
+- [VMD](https://www.ks.uiuc.edu/Research/vmd/) — molecular visualization program for displaying, animating, and analyzing large biomolecular systems using 3-D graphics and built-in scripting
 - Python (NumPy, Matplotlib) — parsing & visualization
 
 ## Reproducing the Results
