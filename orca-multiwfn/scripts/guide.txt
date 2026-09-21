@@ -1,0 +1,26 @@
+# Guide.txt
+# Workflow for NCI / RDG / ELF Analysis with Multiwfn + VMD
+
+## 1. Run Multiwfn to generate analysis data
+# Input: wavefunction file (.molden from ORCA)
+# Example: ELF
+bash elf.sh nh3_iso.molden
+# Output: nh3_ELF.cube
+
+# Example: RDG/NCI
+bash rdg.sh nh3_iso.molden
+# Output: nh3_RDG.cube, nh3_sign_rho.cube
+
+## 2. Visualize with VMD
+# Use the prepared TCL scripts for automatic visualization
+# Example: NCI
+vmd -e nci_nh3.tcl
+# Example: RDG
+vmd -e nci_co2.tcl
+# Example: ELF
+vmd -e elf_nh3.tcl
+
+## 3. Visualize with VESTA (optional)
+# Open the .cube file directly in VESTA
+# File → Open → select nh3_ELF.cube or nh3_RDG.cube
+# Adjust isosurface values
