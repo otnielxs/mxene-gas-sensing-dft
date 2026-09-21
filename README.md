@@ -1,3 +1,4 @@
+![MXene Gas Sensing](figures/cover.png)
 # Gas Molecule Adsorption on MXene Ti₂CO₂ Monolayer: A Multi-Method DFT Bonding Analysis
 
 A computational study of gas molecule adsorption (NH₃, CO₂, NO₂, H₂S) on Ti₂CO₂ MXene monolayer, using complementary **periodic DFT (Quantum ESPRESSO)** and **cluster model (ORCA + Multiwfn)** approaches to evaluate the potential of Ti₂CO₂ as a gas-sensing material.
