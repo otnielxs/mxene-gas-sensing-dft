@@ -15,18 +15,17 @@ Convergence testing was performed on the pristine Ti₂CO₂ monolayer (without 
 - Convergence threshold: total energy difference between successive steps < 1–5 meV/atom
 - Charge density cutoff (`ecutrho`) set according to the pseudopotential type used (typically 8× `ecutwfc` for PAW)
 
-**Result:** *(TBD — insert convergence plot and final chosen value)*
+**Result:** *Ti₂CO₂ converged in ecutwfc 60 Ry, ecutrho 480 Ry*. only for first approach, i use 40 and 320. you can use higher if your resources is required 
+
 
 Pseudopotential used: *(type: Projector Augmented Wave)*
 
 ### 1.2 K-point Sampling
 
 **Procedure:**
-- In-plane (x, y) k-point grid tested from coarse (4×4×1) to finer (6×6×1, 8×8×1) on the pristine monolayer
+- In-plane (x, y) k-point grid tested from coarse (4×4×1) to finer (6×6×1, 8×8×1) on the pristine monolayer. but since i make 2 times in x direction, i use (2x4x1 for relax, 3x6x1 for scf, and 4x8x1 for nscf) 
 - Out-of-plane (z) k-point fixed at 1, since the slab has no periodicity along the vacuum direction
 - Monkhorst-Pack shifted grid used (rather than Γ-point only), appropriate for the unit cell size used here
-
-**Result:** *(TBD — insert convergence plot and final chosen grid)*
 
 For adsorption calculations using a larger supercell (to avoid spurious interaction between periodic images of the adsorbed molecule), the k-point grid was scaled down proportionally relative to the unit cell.
 
@@ -37,13 +36,13 @@ For adsorption calculations using a larger supercell (to avoid spurious interact
 
 ### 1.4 van Der Waals Correction
 
-- For capturing vdW interactions, **DFT-D3** implemented in *vdw_corr*
+- For capturing vdW interactions, **DFT-D3** implemented on **vdw_corr**
 ---
 
 ## 2. Slab Construction
 
 - Unit cell / supercell size: *(multiplicity in x direction 2 times)*
-- Vacuum layer thickness: *(5 Å)* — chosen to minimize spurious interaction between periodic images along the surface normal while avoiding unnecessary computational cost from excess vacuum
+- Vacuum layer thickness: *(5 Å)* — chosen to minimize spurious interaction between periodic images along the surface normal while avoiding unnecessary computational cost from excess vacuum **for better result i suggested > 15 Angstrom**
 - Termination group: =O (oxygen-terminated Ti₂CO₂, as commonly studied in the MXene gas-sensing literature)
 - Number of gas molecules per supercell: 1 (isolated adsorption, low-coverage regime)
 - Molecule initial placement: *(on top, oxygen site)*
@@ -56,7 +55,6 @@ Because periodic DFT captures surface-averaged electronic effects but is less su
 
 - **Cluster extraction:** the cluster was cut from the relaxed periodic adsorption geometry, centered on the adsorption site, including the immediate coordination environment of the gas molecule
 - **Cluster size:** *(1 unit cell)*
-- **Dangling bond treatment:** boundary atoms with broken bonds were capped with hydrogen atoms to saturate valence and avoid spurious edge states
 - **Geometry:** the cluster geometry was kept fixed from the periodic-relaxed structure for single-point analysis, or re-optimized
 
 ---
@@ -87,14 +85,16 @@ Because periodic DFT captures surface-averaged electronic effects but is less su
 ## 6. Limitations and Cross-Method Considerations
 
 - Periodic DFT captures collective electronic response of the full 2D material (e.g., work function, band-level shifts) but the finite k-point/cutoff choices represent a compromise between accuracy and the computational resources available for this project
-- The cluster model isolates local bonding character with higher-level treatment (larger basis sets, dispersion correction) but omits the extended electronic structure of the full slab, and boundary capping (H-termination) is itself an approximation that may perturb the local electronic environment near the cluster edge
 - Discrepancies between the two methods' charge-transfer estimates, if found, are expected primarily from these structural and methodological differences rather than from calculation error — this will be discussed explicitly once both result sets are available *(TBD — fill in once comparison is complete)*
-
+- Try some multiplicity factor, especially for Ti₂CO₂ and NO₂ for founding ground state level (ORCA) 
+- Try realistic cluster with adding some Hydrogen atoms on surface
 ---
 
 ## Revision Log
 
 | Date | Change |
 |---|---|
-| *18/09/2026* | Initial draft — parameters pending convergence testing |
+| *18/09/2026* | Initial draft|
 | *19/09/2026* | QE running |
+| *20/09/2026* | ORCA running |
+| *21/09/2026* | Write results |
