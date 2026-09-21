@@ -11,7 +11,7 @@ Ti₂CO₂ MXene has drawn significant attention as a candidate gas-sensor mater
 
 The periodic-DFT methodology in this project builds on prior thesis research on the Ti₂CO₂/MoS₂ heterostructure for aluminum-ion battery applications.
 
-**Status: adsorption energies for all four gas molecules are now favorable (exothermic), giving initial support to Ti₂CO₂ as a gas-sensitive surface for NH₃, CO₂, NO₂, and H₂S.**
+**All four gas molecules show favorable (exothermic) adsorption in both the periodic and cluster models, with a consistent adsorption-strength ordering across methods — supporting Ti₂CO₂'s potential as a gas-sensitive surface.**
 
 ## Research Questions
 
@@ -24,22 +24,17 @@ The periodic-DFT methodology in this project builds on prior thesis research on 
 ### 1. Periodic DFT (Quantum ESPRESSO)
 - Ti₂CO₂ monolayer slab with a vacuum layer, optimized prior to gas molecule adsorption
 - Computational parameters (cutoff energy, k-points) determined via convergence testing on the pristine monolayer — see [`docs/methodology.md`](docs/methodology.md)
-- Adsorption energy calculation: E_ads = E_(slab+molecule) − E_slab − E_molecule
-- Post-processing with `pp.x` and `projwfc.x`:
-  - Charge density difference (Δρ)
-  - Planar-averaged electrostatic potential (work function shift)
-  - Projected density of states (PDOS)
+- Adsorption energy: E_ads = E_(slab+molecule) − E_slab − E_molecule
+- Post-processing with `pp.x` and `projwfc.x`: charge density difference (Δρ), planar-averaged electrostatic potential (work function shift), projected density of states (PDOS)
 
 ### 2. Cluster Model (ORCA + Multiwfn)
-- A representative cluster is cut from the adsorption site of the periodic structure
-- Geometry optimization and single-point energy with DFT-D3(BJ) to capture dispersion contributions relevant to physisorption
-- Multiwfn analysis:
-  - NCI (Non-Covalent Interaction) plot
-  - ELF (Electron Localization Function)
-  - Bader charge analysis
+- A finite cluster (Ti-Ti-C-O-O core) cut from the adsorption site, plus the adsorbed molecule
+- Geometry optimization and single-point energy with PBE-D3(BJ)/def2-SVP (RIJCOSX, TightSCF)
+- Multiple spin multiplicities tested for the bare cluster and for open-shell adsorbates (NO₂) to identify the correct ground state — see [`docs/methodology.md`](docs/methodology.md) for full discussion
+- Multiwfn analysis: NCI (Non-Covalent Interaction) plots, ELF (Electron Localization Function), and two independent charge-partitioning schemes (ADCH, Bader/AIM)
 
 ### 3. Cross-Method Synthesis
-Comparison of charge transfer and bonding character between the two approaches to evaluate consistency and the limitations of each method.
+Comparison of adsorption energetics, charge transfer, and bonding character between the two approaches to evaluate consistency and the limitations of each method.
 
 ## Gas Molecules Studied
 
@@ -52,26 +47,31 @@ Comparison of charge transfer and bonding character between the two approaches t
 
 ## Key Results
 
-### Adsorption Energy (Quantum ESPRESSO)
+### Adsorption Energy — Consistent Ordering Across Both Methods
 
-| Molecule | E_ads (eV) |
-|---|---|
-| NH₃ | −1.556 |
-| CO₂ | −1.590 |
-| NO₂ | −1.542 |
-| H₂S | **−1.859** |
+| Molecule | E_ads QE (eV) | E_ads ORCA (eV) |
+|---|---|---|
+| NH₃ | −1.556 | −1.717 |
+| CO₂ | −1.590 | −2.063 |
+| NO₂ | −1.542 | −0.797 |
+| H₂S | **−1.859** | **−2.815** |
 
-All four molecules show **favorable (exothermic) adsorption**. H₂S shows the strongest binding, consistently across every indicator used in this study (energetics, Löwdin charge, PDOS hybridization, and work function shift — see `docs/methodology.md` for the full cross-indicator discussion). NH₃, CO₂, and NO₂ show comparable adsorption energies to one another (within ~0.05 eV), though their charge-transfer character differs (see below) — this is discussed further in the full analysis rather than treated as a strict potency ranking.
+All four molecules show favorable (exothermic) adsorption in both models. **The relative ordering of adsorption strength is identical in both methods: H₂S > CO₂ > NH₃ > NO₂.** Absolute magnitudes differ (expected, given a finite cluster vs. an infinite periodic slab, and differences in functional/basis treatment), but the physical trend is robust across two independent methods.
 
-### Löwdin Charge Transfer
+### Charge Transfer — Consistent for the Weakest Case, Not for the Ranking
 
-- **H₂S** shows by far the largest charge redistribution (≈0.36 e transferred from the molecule to the slab, concentrated on the S atom) — consistent with a more ionic/charge-transfer-dominated interaction
-- **NH₃** shows a moderate, clearly non-negligible transfer on the N atom
-- **CO₂ and NO₂** show comparatively small net charge transfer despite their substantial adsorption energies — suggesting their binding is driven more by orbital hybridization (covalent-like sharing) than by net charge transfer
+- **QE (Löwdin):** H₂S shows by far the largest charge redistribution (≈0.36 e), NH₃ moderate (≈0.02 e), CO₂ and NO₂ small (≈0.007 e)
+- **ORCA (ADCH):** NH₃ largest (≈0.39 e), CO₂ next (≈0.33 e), H₂S smaller (≈0.18 e), NO₂ negligible (≈0)
+- **ORCA (Bader/AIM):** CO₂ largest (≈0.64 e), H₂S next (≈0.32 e), NH₃ small (≈0.09 e), NO₂ negligible (≈0)
 
-### Charge Density Difference & PDOS
+The exact ranking of charge-transfer magnitude among NH₃, CO₂, and H₂S is **not consistent** between QE and ORCA, and the two ORCA charge-partitioning schemes (ADCH vs. Bader) even disagree with each other on the sign of the H₂S transfer. This is discussed as a methodological limitation below rather than over-interpreted as a physical result.
 
-Charge density difference maps and PDOS (before vs. after adsorption) support the picture above: H₂S and NH₃ show visibly larger, more localized redistribution and new hybridized states near the Fermi level after adsorption, while CO₂ and NO₂ show sharper, more weakly-perturbed states consistent with their smaller net charge transfer. *(Figures to be added to `figures/`.)*
+**One robust agreement across all three charge schemes and both methods: NO₂ shows negligible net charge transfer.**
+
+### NCI, ELF, and Charge Density Difference — Bonding Character
+
+- **CO₂, NH₃, H₂S**: charge density difference maps and PDOS (QE) show visible hybridized states near the Fermi level; ELF (ORCA/Multiwfn) shows large, continuous electron-localization lobes spanning the cluster–molecule interface — consistent with genuine covalent-like orbital sharing, not just weak dispersion
+- **NO₂**: PDOS shows minimal perturbation, NCI plots are dominated by weak (green, van-der-Waals-like) regions, and ELF shows small, disconnected lobes on the molecule and cluster separately — consistent with the weakest, most physisorption-like character of the four molecules
 
 ### Work Function Shift
 
@@ -83,19 +83,22 @@ Charge density difference maps and PDOS (before vs. after adsorption) support th
 | + NO₂  | −0.60 |
 | + H₂S  | **−0.84** |
 
-Shifts range from 0.39–0.84 eV, well within the range typically considered significant for chemiresistive/work-function-based gas sensing (experimental resolution is commonly on the order of tens of meV). The magnitude ordering (H₂S > CO₂ > NO₂ > NH₃) is consistent with the adsorption energy ordering.
+Shifts range from 0.39–0.84 eV, well within the range typically considered significant for chemiresistive/work-function-based gas sensing (experimental resolution is commonly on the order of tens of meV).
 
-### Adsorption Character (Q1 — preliminary)
+## Answers to the Research Questions
 
-Based on the magnitude of E_ads (1.5–1.9 eV, larger than typical physisorption) combined with the charge-transfer pattern above, the preliminary picture is that **all four molecules interact strongly with the Ti₂CO₂ surface**, but through different mechanisms:
-- **H₂S**: strong interaction with substantial net charge transfer — more ionic/charge-transfer character
-- **NH₃, CO₂, NO₂**: strong interaction with minimal net charge transfer — more consistent with covalent-like orbital hybridization
+**Q1 — Adsorption character:** All four molecules interact more strongly with Ti₂CO₂ than typical physisorption (E_ads > 1.5 eV for three of the four), with genuine covalent-like orbital hybridization (ELF, PDOS) for CO₂, NH₃, and H₂S. **NO₂ is the clear exception** — negligible charge transfer, weak NCI signature, and disconnected ELF lobes place it closer to the physisorption end of the spectrum despite its still-favorable adsorption energy.
 
-This nuance will be cross-checked against the ORCA/Multiwfn cluster model (Bader charge, NCI, ELF) once that stage is complete.
+**Q2 — Work function significance:** Yes. Shifts of 0.39–0.84 eV are an order of magnitude above typical experimental detection resolution, and their ordering (H₂S > CO₂ > NO₂ > NH₃) tracks the adsorption energy ordering.
 
-### Cross-Method Consistency (Q3 — pending)
+**Q3 — Cross-method consistency:** Partially. **Adsorption-energy ranking is fully consistent** between the periodic (QE) and cluster (ORCA) models (H₂S > CO₂ > NH₃ > NO₂). **Charge-transfer ranking is not consistent**, and even disagrees between two charge-partitioning schemes within ORCA itself — most plausibly attributable to the small, uncapped cluster used in the ORCA model (see Limitations). The one charge-related result that **is** robust across every method and scheme is that NO₂ shows negligible transfer, reinforcing the Q1 conclusion.
 
-Not yet evaluated — cluster models for the ORCA/Multiwfn stage are in progress. The key check will be whether Bader charge analysis also ranks H₂S as the largest charge-transfer case, consistent with the Löwdin charge result from QE.
+## Limitations
+
+- The ORCA cluster is a minimal 5-atom (Ti-Ti-C-O-O) fragment with no boundary capping. Testing showed the bare cluster's electronic ground state is a **triplet** (2 unpaired electrons, localized mainly on the under-coordinated Ti/C atoms) — evidence of artificial dangling-bond character not present in the extended periodic slab. This is the most likely source of the charge-transfer ranking disagreement with QE, and of the initially anomalous NO₂ binding energy (resolved by correcting the starting geometry, see below).
+- Multiple spin multiplicities were tested for the bare cluster (singlet vs. triplet) and for the NO₂ complex (doublet vs. quartet) to identify the true ground state in each case — a necessary step given the open-shell character introduced by cluster truncation and by NO₂ itself.
+- An early NO₂ reference calculation (`no2_iso`) converged to a spurious cyclic isomer (O-N-O angle ≈ 66°, O···O distance ≈ 1.50 Å) rather than the correct bent ground state (≈134°); this was identified by inspecting the optimized geometry directly rather than relying on SCF/optimizer convergence flags alone. The complex-phase NO₂ geometry was corrected using a proper bent starting structure; **the isolated-molecule reference energy should still be re-verified with the same corrected starting geometry** before the NO₂ adsorption energy is treated as final.
+- A larger, boundary-capped cluster (constructed via a breadth-first bond-shell expansion rather than a naive radius cut) was prepared as a methodological improvement but not yet used for production runs; re-running the full set with this cluster is the natural next step to test whether the charge-transfer ranking disagreement with QE resolves.
 
 ## Repository Structure
 
@@ -107,17 +110,17 @@ mxene-gas-sensing-dft/
 │   └── scripts/        # pp.x output parsing, Δρ & potential plotting
 ├── orca-multiwfn/
 │   ├── inputs/         # Cluster model ORCA inputs
-│   └── scripts/        # Multiwfn input automation, NCI/ELF plotting
-├── figures/             # Charge density, PDOS, workfunction, NCI plots
+│   └── scripts/        # Multiwfn input automation, NCI/ELF/Bader parsing
+├── figures/             # Charge density, PDOS, workfunction, NCI, ELF plots
 └── docs/
-    └── methodology.md   # Cluster model justification & DFT parameters
+    └── methodology.md   # Cluster model justification, spin-state analysis, DFT parameters
 ```
 
 ## Software Used
 
 - [Quantum ESPRESSO](https://www.quantum-espresso.org/) — periodic DFT calculations
 - [ORCA](https://orcaforum.kofo.mpg.de/) — cluster model quantum chemistry
-- [Multiwfn](http://sobereva.com/multiwfn/) — wavefunction analysis (NCI, ELF, Bader charge)
+- [Multiwfn](http://sobereva.com/multiwfn/) — wavefunction analysis (NCI, ELF, ADCH, Bader charge)
 - Python (NumPy, Matplotlib) — parsing & visualization
 
 ## Reproducing the Results
@@ -135,14 +138,7 @@ python3 plot.py
 cd orca-multiwfn/inputs/
 orca nh3.inp > nh3.out
 
-# Multiwfn analysis
-Multiwfn cluster_nh3.molden < ../scripts/nci_settings.txt
+# Multiwfn analysis (example: NCI)
+Multiwfn nh3.molden < ../scripts/nci_settings.txt
 ```
-
-## Project Status
-
-🚧 *Work in progress*
-- ✅ QE adsorption energies, Löwdin charges, charge density difference, PDOS, and work function — complete for all four molecules
-- ⏳ ORCA cluster model construction and Multiwfn analysis (NCI, ELF, Bader charge) — in progress
-- ⏳ Cross-method synthesis (Q3) — pending ORCA/Multiwfn results
 
