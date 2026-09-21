@@ -42,7 +42,7 @@ For adsorption calculations using a larger supercell (to avoid spurious interact
 ## 2. Slab Construction
 
 - Unit cell / supercell size: *(multiplicity in x direction 2 times)*
-- Vacuum layer thickness: *(5 Å)* — chosen to minimize spurious interaction between periodic images along the surface normal while avoiding unnecessary computational cost from excess vacuum **for better result i suggested > 15 Angstrom**
+- Vacuum layer thickness: *(5 Å)* — chosen to minimize spurious interaction between periodic images along the surface normal while avoiding unnecessary computational cost from excess vacuum **for better result suggested > 15 Å*
 - Termination group: =O (oxygen-terminated Ti₂CO₂, as commonly studied in the MXene gas-sensing literature)
 - Number of gas molecules per supercell: 1 (isolated adsorption, low-coverage regime)
 - Molecule initial placement: *(on top, oxygen site)*
@@ -87,7 +87,7 @@ Because periodic DFT captures surface-averaged electronic effects but is less su
 - Periodic DFT captures collective electronic response of the full 2D material (e.g., work function, band-level shifts) but the finite k-point/cutoff choices represent a compromise between accuracy and the computational resources available for this project
 - Discrepancies between the two methods' charge-transfer estimates, if found, are expected primarily from these structural and methodological differences rather than from calculation error — this will be discussed explicitly once both result sets are available *(TBD — fill in once comparison is complete)*
 - Try some multiplicity factor, especially for Ti₂CO₂ and NO₂ for founding ground state level (ORCA) 
-- Try realistic cluster with adding some Hydrogen atoms on surface
+- Try realistic cluster with adding some Hydrogen atoms on surface (ORCA)
 ---
 
 ## Revision Log
