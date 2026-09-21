@@ -1,7 +1,5 @@
 # Methodology
 
-This document justifies the computational parameters and modeling choices used throughout this project. It is intended to be updated as calculations progress — sections marked *(TBD)* will be filled in with actual data as results become available.
-
 ---
 
 ## 1. Computational Parameters (Quantum ESPRESSO)
