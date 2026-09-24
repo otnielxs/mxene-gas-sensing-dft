@@ -7,4 +7,5 @@ the plot and post processing file already in inputs directory. here's some notat
 
 -the capital letter for molecule name is stand for MXene+mol, e.g r_NH3.in that mean NH3 molecule was adsorption on MXene
 -the small letter for molecule name is stand only for molecule, e.g r_nh3.in that mean only contain nh3 molecule
+-the energy in workfunction code plot is actually Rydberg (from avg.dat). i forgot to convert it to eV
 
