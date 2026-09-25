@@ -13,7 +13,7 @@ Ti₂CO₂ MXene has drawn significant attention as a candidate gas-sensor mater
 - **Periodic DFT (QE)** — captures the electronic response of the material as a full slab (band structure, work function, surface-scale charge transfer)
 - **Cluster model (ORCA + Multiwfn)** — captures the local bonding character at the adsorption site in finer detail (interaction type, bonding topology)
 
-The periodic-DFT methodology in this project builds on prior thesis research on the Ti₂CO₂/MoS₂ heterostructure for aluminum-ion battery applications.
+The periodic-DFT methodology in this project builds on prior thesis research on the [Ti₂CO₂/MoS₂ heterostructure for aluminum-ion battery applications](https://repository.ipb.ac.id/handle/123456789/176578).
 
 **All four gas molecules show favorable (exothermic) adsorption in both the periodic and cluster models, with a consistent adsorption-strength ordering across methods — supporting Ti₂CO₂'s potential as a gas-sensitive surface.**
 
